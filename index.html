@@ -5,28 +5,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="encrypter/assets/css/style.css">
     <title>Encrypter</title>
 </head>
 
 <body>
-    <header>
+    <header class="header">
         <h1>
-            <a href="index.html">Encrypter</a>
+            <h1 href="index.html">Encrypter</h1>
         </h1>
     </header>
-    <main>
-        <textarea name="main_text-area" id="main_text-area" cols="80"
-            rows="25">Ingresa el texto a encriptar aqui</textarea>
-    </main>
-    <aside>
-        <picture>
-            <source srcset="encrypter/assets/images/Muñeco.png" media="(min-width: 800px)">
-            <source srcset="encrypter/assets/images/Muñeco.png" media="(min-width: 500px)">
-            <img src="encrypter/assets/images/Muñeco.png" alt="Encrypter">
-        </picture>
-    </aside>
+    <div class="container">
+        <main class="main">
+            <form action="">
+                <textarea name="form_text-area" 
+                id="form_text-area" 
+                placeholder="Ingrese el texto aqui" 
+                cols="80"
+                rows="20"></textarea>
 
-    <footer></footer>
+                <div class="form-buttons">
+                    <button type="button" id="form_button-encrypt">Encriptar</button>
+                    <button type="button" id="form_button-decrypt">Desencriptar</button>
+                </div>
+
+            </form>
+
+        </main>
+        <aside class="aside">
+            <div id="aside_main">
+            </div>
+        </aside>
+    </div>
+
+
+    <footer class="footer">
+        <a href="https://github.com/jmrodev/portafolio">Source code</a>
+        <a href="https://github.com/jmrodev">About me</a>
+        <a href="https://www.linkedin.com/in/juan-marcelo-rodriguez/">My Linkedin</a>
+    </footer>
+    <script src="encrypter/assets/js/main.js"></script>
 </body>
 
 </html>

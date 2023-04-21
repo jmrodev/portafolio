@@ -6,7 +6,7 @@ Let's go through the code step by step:
 
 Variables and DOM elements are defined:
 
-
+~~~
 
 'use strict';
 let { value: text } = document.querySelector("#form_text-area");
@@ -14,10 +14,10 @@ let output = document.querySelector("#aside_main");
 let encrypt = document.querySelector("#form_button-encrypt");
 let decrypt = document.querySelector("#form_button-decrypt");
 
-
+~~~
 The renderOutput() function is defined to display an initial message and an image when the page loads:
 
-
+~~~
 
 function renderOutput() {
     output.innerHTML = `
@@ -31,11 +31,11 @@ function renderOutput() {
 }
 
 
-
+~~~
 The encryptText() function is defined to encrypt the input text by replacing vowels with specific strings:
 
 
-
+~~~
 const encryptText = () => {
     let text = "";
     if (input !== null && input.value !== "") {
@@ -56,12 +56,12 @@ const encryptText = () => {
     return text;
 }
 
-
+~~~
 
 
 The renderText() function is defined to display the encrypted or decrypted text on the page:
 
-
+~~~
 
 let renderText = (a) => {
     output.innerHTML = '';
@@ -69,11 +69,11 @@ let renderText = (a) => {
     output.innerHTML = `<p>\${text}</p>`;
     input.value = '';
 }
-
+~~~
 
 The decryptText() function is defined to decrypt the encrypted text by reversing the vowel replacements:
 
-
+~~~
 
 let decryptText = () => {
     let text = input.value;
@@ -91,12 +91,12 @@ let decryptText = () => {
     return text;
 }
 
-
+~~~
 
 Event listeners are added for the "Encrypt" and "Decrypt" buttons to call the respective functions and render the text on the page:
 
 
-
+~~~
 decrypt.addEventListener('click', () => {
     const decryptedText = decryptText();
     renderText(decryptedText);
@@ -108,11 +108,12 @@ encrypt.addEventListener("click", () => {
 });
 
 
-
+~~~
 
 Finally, the renderOutput() function is called when the page loads:
-
+~~~
 
 
 window.addEventListener('load', renderOutput);
 
+~~~

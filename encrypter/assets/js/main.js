@@ -5,28 +5,31 @@ let encrypt = document.querySelector("#form_button-encrypt");
 let decrypt = document.querySelector("#form_button-decrypt");
 
 window.addEventListener('load', renderOutput);
+const vowelReplacements = {
+  a: "ai",
+  e: "enter",
+  i: "imes",
+  o: "ober",
+  u: "ufat"
+};
+
 const encryptText = () => {
-
-    let text = "";
-if (input !== null && input.value !== "") {
-    text = input.value;
-} else {
-    throw new Error("Invalid input");
-}
-
-    let vowelReplacements  = {
-        a: "ai",
-        e: "enter",
-        i: "imes",
-        o: "ober",
-        u: "ufat"
+  let input = document.querySelector("#form_text-area[type='text']");
+  let text = "";
+  if (input !== null && input.value.trim() !== "") {
+    if (/[^a-z\s]/i.test(input.value)) {
+      throw new Error("Input contains special characters");
     }
-
-    text = text.replace(/a|e|i|o|u/g, match => vowelReplacements [match]
-    );
-
-    return text;
-}
+    if (/[A-Z]/.test(input.value)) {
+      throw new Error("Input contains uppercase letters");
+    }
+    text = input.value.trim();
+  } else {
+    throw new Error("Invalid input");
+  }
+  text = text.replace(/a|e|i|o|u/g, match => vowelReplacements[match]);
+  return text;
+};
 
 function renderOutput() {
     output.innerHTML = `
@@ -82,5 +85,3 @@ encrypt.addEventListener("click", () => {
     renderText(encryptedText);
 }
 )
-
-

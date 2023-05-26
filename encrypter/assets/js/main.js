@@ -3,32 +3,49 @@ let input = document.querySelector("#form_text-area");
 let output = document.querySelector("#aside_main");
 let encrypt = document.querySelector("#form_button-encrypt");
 let decrypt = document.querySelector("#form_button-decrypt");
+const copyButton = document.getElementById("copy_btn");
 
 window.addEventListener('load', renderOutput);
 const vowelReplacements = {
-  a: "ai",
-  e: "enter",
-  i: "imes",
-  o: "ober",
-  u: "ufat"
+    a: "ai",
+    e: "enter",
+    i: "imes",
+    o: "ober",
+    u: "ufat"
 };
-
 const encryptText = () => {
-  let input = document.querySelector("#form_text-area[type='text']");
-  let text = "";
-  if (input !== null && input.value.trim() !== "") {
-    if (/[^a-z\s]/i.test(input.value)) {
-      throw new Error("Input contains special characters");
+    let text = "";
+
+    text = input.value;
+    if (text === text.toUpperCase()) {
+        alert("Solo se aceptan letras minusculas");
+        return;
     }
-    if (/[A-Z]/.test(input.value)) {
-      throw new Error("Input contains uppercase letters");
+
+    if (text.match(/[0-9]/g)) {
+        alert("No se aceptan numeros");
+        return;
     }
-    text = input.value.trim();
-  } else {
-    throw new Error("Invalid input");
-  }
-  text = text.replace(/a|e|i|o|u/g, match => vowelReplacements[match]);
-  return text;
+
+    if (text.match(/[!@#$%^&*(),.?":{}|<>]/g)) {
+        alert("No se aceptan caracteres especiales");
+        return;
+    }
+
+    if (text === "") {
+        alert("No se aceptan campos vacios");
+
+        return;
+    }
+
+    if (text.match(/[áéíóú]/g)) {
+        alert("No se aceptan acentos");
+        return;
+    }
+    
+    text = text.replace(/a|e|i|o|u/g, match => vowelReplacements[match]);
+
+    return text;
 };
 
 function renderOutput() {
@@ -85,3 +102,21 @@ encrypt.addEventListener("click", () => {
     renderText(encryptedText);
 }
 )
+
+
+
+copyButton.addEventListener('click', async (e) => {
+    console.log('copying to clipboard');
+
+    try {
+        await navigator.clipboard.writeText(output.textContent);
+    }
+    catch (err) {
+      console.error('Could not write to clipboard', err);
+    }
+  
+  });
+
+
+
+
